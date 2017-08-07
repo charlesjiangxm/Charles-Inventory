@@ -1,16 +1,14 @@
-	//define and resize the output of the bitline voltages -----------------------------------
-	//1D:number of MAC used(the MACs are in a row-by-row sequence); 2D:batch_num;
-	//3D:iter_num; 4D:CB_COL
-    vector<vector<vector<MatrixXd * > > > bitline_voltage;
-	bitline_voltage.resize(mac_row * mac_col);
-	for (int i = 0; i < mac_row * mac_col; i++) {
-		bitline_voltage[i].resize(batch_num);
-		for (int j = 0; j < batch_num; j++) {
-			bitline_voltage[i][j].resize(iter_num);
-			for (int k = 0; k < iter_num; k++) {
+/* ---------------------------------------------------
+ * 1. How to use pointer/New/Delete
+ * ---------------------------------------------------
+ */
+vector<MatrixXd * > bitline_voltage;
 
-				bitline_voltage[i][j][k] = new MatrixXd(MatrixXd::Zero(1, 128));
-                *bitline_voltage[i][j][k] = MatrixXd::Zero(1, 128);
-			}
-		}
-	}
+bitline_voltage.resize(128);
+for (int k = 0; k < iter_num; k++) {
+	// 指针需要先用new来初始化后才能进行赋值, new的意思是分配一段内存给bitline_voltage
+	bitline_voltage[i][j][k] = new MatrixXd(MatrixXd::Zero(1, 128));
+	// 若没有上面那行语句，单独使用这行语句会报segmentation fault，就是系统为保护自己不让用户使用未分配的
+	// 内存，但是如果已经new过bitline_voltage了，就可以直接使用下面这行语句了
+	*bitline_voltage[i][j][k] = MatrixXd::Zero(1, 128);
+}
