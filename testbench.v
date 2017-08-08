@@ -3,18 +3,23 @@
 // ---------------------------------------------------
 `timescale 1 ns / 1 ps
 module testbench;
+	
+// Anotate sdf file
+initial begin
+$sdf_annotate("../net/RoundRobinArbiter.sdf", uut);
+end
 
 // Modify your clk period here, unit: ns
 localparam CLK_PERIOD = 1;
 
 // Modify your parameters here
-parameter		N = 4;
+parameter			N = 4;
 
 // Modify your ports here
 reg				clk;          // system clock
 reg				rst_n;          // system reset
-reg	[N-1:0]		request;      // request
-wire [N-1:0]	grant;         // grant
+reg	[N-1:0]			request;      // request
+wire	[N-1:0]			grant;         // grant
 	
 RoundRobinArbiter #(
 	.N		(4)
