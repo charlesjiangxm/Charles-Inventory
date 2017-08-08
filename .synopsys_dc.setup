@@ -1,5 +1,5 @@
 # Define the target technology library, symbol library and link libraries
-
+# This is for our TSMC65 library
 set target_library tcbn65lpbc.db
 set link_library tcbn65lpbc.db
 set search_path {. $search_path /afs/ee.ust.hk/sun4x_56/usr/eelocal/tsmchome/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a}
