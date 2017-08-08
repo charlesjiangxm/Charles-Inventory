@@ -67,7 +67,8 @@ set_wire_load_model -name 1K_hvratio_1_2 -library NangateOpenCellLibrary
 write -hierarchy -format ddc -output ../ddc/csd_constriant.ddc 
 
 # scripts of step 23: Synthesize
-compile_ultra -exact_map
+compile -extract_map
+# compile_ultra -exact_map
 
 # scripts of step 24: save the synthesized design, changes the name here #change here
 write -hierarchy -format ddc -output ../ddc/csd_synthesized.ddc
