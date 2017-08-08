@@ -70,7 +70,8 @@ set_max_delay 0 -from [all_inputs] -to [all_outputs]
 write -hierarchy -format ddc -output ../ddc/shiftandadd_constriant.ddc 
 
 # scripts of step 23: Synthesize
-compile_ultra -exact_map
+compile -extract_map
+# compile_ultra -exact_map
 
 # scripts of step 24: save the synthesized design, changes the name here #change here
 write -hierarchy -format ddc -output ../ddc/shiftandadd_synthesized.ddc
