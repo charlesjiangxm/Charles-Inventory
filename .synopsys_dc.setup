@@ -1,0 +1,49 @@
+# Define the target technology library, symbol library and link libraries
+
+set target_library tcbn65lpbc.db
+set link_library tcbn65lpbc.db
+set search_path {. $search_path /afs/ee.ust.hk/sun4x_56/usr/eelocal/tsmchome/digital/Front_End/timing_power_noise/NLDM/tcbn65lp_200a}
+# set symbol_library {"basic.sdb" "US.8ths.sdb" "ripper.sdb"}
+set designer "Jingbo JIANG"
+
+# Define aliases
+alias h history
+alias rc report_constraint -all_violators
+
+define_design_lib work -path work;
+
+#/* ================================================= */
+#/* General configuration settings. */
+#/* ================================================= */
+
+# Warn if latches are inferred
+set hdlin_check_no_latch true
+
+# Treat text between translate statements as comments
+set hdlin_translate_off_skip_text true
+
+set verilogout_write_components true
+
+# Determines the name that will be used for the architecture of the write -f verilog command
+set verilogout_architecture_name "SYN_arc"
+
+# Turn tri state nets from "tri" to "wire"
+set verilogout_no_tri true
+
+# Treat text between translate statements as comments
+set hdlin_translate_off_skip_text true
+
+# List of package commands
+#set vhdlout_use_packages {"IEEE.std_logic_1164" "vtvtlib25.Vcomponents"}
+
+# Write out component declarations for cells mapped to a technology library.
+set vhdlout_write_components true
+
+# Determines the name that will be used for the architecture of the write -f vhdl command
+set vhdlout_architecture_name "SYN_arc"
+
+# Treat text between translate statements as comments
+set hdlin_translate_off_skip_text true
+
+# Specify the styel to use in naming an individual port member
+set bus_naming_style {%s[%d]}
