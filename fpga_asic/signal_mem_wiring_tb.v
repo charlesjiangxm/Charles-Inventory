@@ -23,7 +23,7 @@
 module param_calc_testbench;
 
 localparam CLK_PERIOD   = 10.0;
-localparam RST_TIME     = CLK_PERIOD * 3
+localparam RST_TIME     = CLK_PERIOD * 3;
 
 // signal lists ------------------------------------------------------------------
 reg clk, rst_n;
