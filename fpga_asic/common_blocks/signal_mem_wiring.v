@@ -20,13 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module top(
+module top # (
+    parameter DATA_WIDTH_BIT = 512,
+    parameter DATA_WIDTH_BYTE = 64
+)(
     input   clk,
     input   rst_n,
-    input   wire    [511:0]     data_a,
-    input   wire    [511:0]     data_b,
+    input   wire    [DATA_WIDTH_BIT-1:0]     data_a,
+    input   wire    [DATA_WIDTH_BIT-1:0]     data_b,
     
-    output  wire    [511:0]     data_out
+    output  wire    [DATA_WIDTH_BIT-1:0]     data_out
     );
     
 wire    [15:0]      data_a_w      [31:0];
