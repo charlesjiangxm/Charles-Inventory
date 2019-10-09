@@ -28,21 +28,49 @@ module param_calc_testbench (
 localparam CLK_PERIOD   = 5.0;
 localparam RST_TIME     = CLK_PERIOD * 3;
 
+// signal lists ------------------------------------------------------------------
+reg   clk, rst_n, done;
+reg   [DATA_WIDTH_BIT-1:0]   data_a, data_b;
+wire  [DATA_WIDTH_BIT-1:0]   data_out;
+
 // clock and reset ---------------------------------------------------------------
 initial begin
   clk = 0;
   forever #(CLK_PERIOD/2.0) clk = ~clk;
 end
 
+// reset profile
 initial begin 
     rst_n = 0;
+    done  = 0;
     #RST_TIME rst_n = 1;
 end
 
-// signal lists ------------------------------------------------------------------
-reg   clk, rst_n;
-reg   [DATA_WIDTH_BIT-1:0]   data_a, data_b;
-wire  [DATA_WIDTH_BIT-1:0]   data_out;
+// testbench --------------------------------------------------------------------
+initial begin
+    wait(rst_n == 1'b1); #CLK_PERIOD; @(posedge clk);
+
+
+
+
+
+
+
+    #(CLK_PERIOD*10) @(posedge clk);
+    done = 1'b1;
+end
+
+// display information -------------------------------------------------------
+initial begin
+    done = 0;
+    wait(done == 1'b1); #CLK_PERIOD; @(negedge clk);
+    $display("result after scaling is: ");
+    for(i=0;i<8;i=i+1) begin
+        $display("%f ",out_w[i]/2^15);
+    end
+    $display("\n");
+    $finish;
+end
 
 // instantiation -----------------------------------------------------------------
 top top_dut(
@@ -52,10 +80,5 @@ top top_dut(
     .data_b   (data_b),
     .data_out (data_out)
 );
-
-// testbench ----------------------------------------------------------------------
-initial begin
-
-end
 
 endmodule
