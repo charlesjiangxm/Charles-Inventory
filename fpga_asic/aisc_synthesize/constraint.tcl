@@ -35,8 +35,12 @@ create_clock -name vclk -period 98.000 -waveform {0.000 49.000}
 set_input_delay -max 10.0 -clock vclk [remove_from_collection [all_inputs] [get_ports clk]]
 set_output_delay -max 10.0 -clock vclk [all_outputs]
 
-# Capacitance - set load on the output ports
-set_load 1 [all_outputs]
+# Set driving stregth, e.g. 0.01 means rising and falling transition delay of all
+# inputs are 0.01ns
+# set_drive [expr 0.1] [all_inputs]
+
+# Capacitance - set capacitive load on the output ports, e.g. 0.02 means 20fF
+set_load [expr 0.05] [all_outputs]
 
 # Input transition time on all inputs except clock
 set_input_transition 1 [remove_from_collection [all_inputs] [get_ports clk]]
