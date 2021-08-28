@@ -14,6 +14,7 @@ set number
 set hlsearch
 set ignorecase
 set tabstop=4
+set nowrap
 set backspace=indent,eol,start
 
 " color scheme
@@ -26,6 +27,20 @@ nnoremap <C-S-Down> :m .+1<CR>==
 " remapping shift+backspace to delete forward (word or whole line) in insert mode
 imap <S-BS> <C-W>
 imap <C-S-BS> <C-U>
+
+" remapping:
+" use shift+right/left to move small steps
+" use ctrl+right/left to move big steps
+" use home/end to move to the begging or end of the line
+noremap <S-Right> e
+noremap <S-Left> b
+imap <S-Right> <esc>ea
+imap <S-Left> <esc>bi
+
+
+
+" remapping redo and undo
+
 
 " remapping shift+del to delete backward in insert and visual mode
 noremap <S-Del> dW
