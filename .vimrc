@@ -37,10 +37,9 @@ noremap <S-Left> b
 imap <S-Right> <esc>ea
 imap <S-Left> <esc>bi
 
-
-
-" remapping redo and undo
-
+" copy and paste from clipboard
+imap <S-Ins> <C-r><C-p>+
+imap <C-c> <esc>y
 
 " remapping shift+del to delete backward in insert and visual mode
 noremap <S-Del> dW
