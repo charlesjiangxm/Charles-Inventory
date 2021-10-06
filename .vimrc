@@ -15,6 +15,7 @@ set hlsearch
 set ignorecase
 set tabstop=4
 set nowrap
+set textwidth=1000
 set backspace=indent,eol,start
 
 " color scheme
