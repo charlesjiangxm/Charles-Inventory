@@ -14,12 +14,11 @@ set number
 set hlsearch
 set ignorecase
 set tabstop=4
-set nowrap
-set textwidth=1000
+" set nowrap
 set backspace=indent,eol,start
 
 " color scheme
-colorscheme darkblue
+colorscheme torte
 
 " remaping ctrl+shift+up/down to moving current line up or down
 nnoremap <C-S-Up> :m .-2<CR>==
@@ -39,15 +38,18 @@ imap <S-Right> <esc>ea
 imap <S-Left> <esc>bi
 
 " copy and paste from clipboard
-imap <S-Ins> <C-r><C-p>+
+" imap <S-Ins> <C-r><C-p>+
 imap <C-c> <esc>y
 
 " remapping shift+del to delete backward in insert and visual mode
+noremap! <S-Insert> <C-R>+
+nnoremap <S-Insert> "+gP
+snoremap <S-Insert> <Esc>gvc<C-R>+
+xnoremap <S-Insert> c<C-R>+<Esc>
 noremap <S-Del> dW
 inoremap <S-Del> <esc>lcW
 
+noremap <C-a> ggVG
+
 " NerdTree
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " map <F5> :NERDTreeToggle<CR>
