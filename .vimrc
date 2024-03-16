@@ -14,6 +14,7 @@ set number
 set hlsearch
 set ignorecase
 set tabstop=4
+set pastetoggle=<F2>
 " set nowrap
 set backspace=indent,eol,start
 
