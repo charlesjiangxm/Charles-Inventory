@@ -1,0 +1,44 @@
+#!/bin/csh -f
+
+if($#argv == 0) then
+    echo "you must provide a branch name you want to merge to master"
+    exit 1
+else
+    while (1)
+        switch ($1)
+            case -b:
+            case -branch:
+                if ($2 == "") then
+                    echo "you must provide a branch name you want to merge to master with -b"
+                    exit 1
+                else
+                    setenv BNAME $2
+                    echo "start to merge $BNAME into the master"
+                    shift;shift
+                    breaksw
+                endif
+            default:
+                break
+        endsw
+    end
+endif
+
+setenv CUR_PATH `pwd`
+setenv GIT_PATH "`git rev-parse --git-dir`/.."
+cd $GIT_PATH
+
+git merge $BNAME -m "tmp merge that must be reset to origin/master later"
+
+foreach file (`git diff --name-only --diff-filter=U`)
+    git checkout --theirs $file
+    git add $file
+end
+
+git reset origin/master
+git add -A
+git commit -m "merge $BNAME -> master"
+
+echo "please delete the commit id and input yours if necessary, else just close it. Then git push-review"
+cd $CUR_PATH
+
+git commit --amend
