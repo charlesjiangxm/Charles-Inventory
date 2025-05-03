@@ -1,2 +1,5 @@
 # run docker onnc/onnc-community  with bash and mount /home/charl/test to /onnc/test
 docker run -ti -v /home/charl/test/:/onnc/test onnc/onnc-community bash
+
+# directly run /onnc/onnc-umbrella/build-normal/tools/onni/onni program
+docker run --rm onnc/onnc-community:latest /onnc/onnc-umbrella/build-normal/tools/onni/onni --help
